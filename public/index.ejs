@@ -427,11 +427,11 @@ function post(){
       if( result.id ){
         //. https://developers.line.biz/ja/reference/messaging-api/#image-message
         var img_url = base_url + 'image/' + result.id;
-        var img_url0 = img_url + '&att=thumbnail';
+        var img_url0 = img_url + 'attachment=1'; //'&att=thumbnail';
 
         var data = {
           type: "image",
-          originalContentUrl: img_url,
+          originalContentUrl: img_url0,
           previewImageUrl: img_url0
         };
 
@@ -556,8 +556,8 @@ function redrawCanvas(){
 function imgClick( img_url ){
   var data = {
     type: 'image',
-    originalContentUrl: base_url + img_url,
-    previewImageUrl: base_url + img_url + '&att=thumbnail'
+    originalContentUrl: base_url + img_url + '&attachment=1',
+    previewImageUrl: base_url + img_url + '&attachment=1'
   };
 
   liff.sendMessages([
