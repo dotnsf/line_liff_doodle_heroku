@@ -146,7 +146,7 @@ $(function(){
               var image_url = 'image/' + result.images[i]._id;
               var figure = '<figure>'
                 + '<a href="#" onClick="imgClick(\'' + image_url + '\');">'
-                + '<img src="/' + image_url + '&att=thumbnail" width="100%"/>'
+                + '<img src="/' + image_url + '?attachment=1" width="100%"/>'
                 + '</a>'
                 + '</figure>';
               figures += figure;
@@ -427,7 +427,7 @@ function post(){
       if( result.id ){
         //. https://developers.line.biz/ja/reference/messaging-api/#image-message
         var img_url = base_url + 'image/' + result.id;
-        var img_url0 = img_url + 'attachment=1'; //'&att=thumbnail';
+        var img_url0 = img_url + '?attachment=1'; //'&att=thumbnail';
 
         var data = {
           type: "image",
@@ -556,8 +556,8 @@ function redrawCanvas(){
 function imgClick( img_url ){
   var data = {
     type: 'image',
-    originalContentUrl: base_url + img_url + '&attachment=1',
-    previewImageUrl: base_url + img_url + '&attachment=1'
+    originalContentUrl: base_url + img_url + '?attachment=1',
+    previewImageUrl: base_url + img_url + '?attachment=1'
   };
 
   liff.sendMessages([
