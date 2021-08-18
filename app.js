@@ -13,6 +13,7 @@ PG.defaults.ssl = true;
 
 
 //. env values
+var database_url = 'DATABASE_URL' in process.env ? process.env.DATABASE_URL : ''; 
 var pg_hostname = 'PG_HOSTNAME' in process.env ? process.env.PG_HOSTNAME : ''; 
 var pg_port = 'PG_PORT' in process.env ? parseInt( process.env.PG_PORT ) : 5432; 
 var pg_database = 'PG_DATABASE' in process.env ? process.env.PG_DATABASE : ''; 
@@ -24,8 +25,8 @@ var basic_username = 'BASIC_USERNAME' in process.env ? process.env.BASIC_USERNAM
 var basic_password = 'BASIC_PASSWORD' in process.env ? process.env.BASIC_PASSWORD : ''; 
 
 var pg_client = null;
-if( pg_hostname && pg_port && pg_database && pg_username && pg_password ){
-  var connectionString = "postgres://" + pg_username + ":" + pg_password + "@" + pg_hostname + ":" + pg_port + "/" + pg_database;
+if( database_url || ( pg_hostname && pg_port && pg_database && pg_username && pg_password ) ){
+  var connectionString = database_url ? database_url : "postgres://" + pg_username + ":" + pg_password + "@" + pg_hostname + ":" + pg_port + "/" + pg_database;
   var pg = new PG.Pool({ 
     connectionString: connectionString,
     idleTimeoutMillis: ( 30 * 86400 * 1000 )  //. 30 days : https://node-postgres.com/api/pool#new-pool-config-object-
