@@ -114,12 +114,6 @@ app.get( '/image/:id', async function( req, res ){
     res.write( JSON.stringify( { status: false, error: 'no id' } ) );
     res.end();
   }
-  var id = req.params.id;
-  var att = req.query.att ? req.query.att : 'image';
-  db.attachment.get( image_id, att, function( err1, body1 ){
-    res.contentType( 'image/png' );
-    res.end( body1, 'binary' );
-  });
 });
 
 app.delete( '/image/:id', async function( req, res ){
