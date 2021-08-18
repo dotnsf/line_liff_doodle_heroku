@@ -138,12 +138,12 @@ $(function(){
 
       $.ajax({
         type: 'GET',
-        url: '/images_by_userId/' + userId,
+        url: '/images/' + userId,
         success: function( result ){
           if( result && result.status && result.images.length > 0 ){
             var figures = '';
             for( var i = result.images.length - 1; i >= 0; i -- ){
-              var image_url = 'image?id=' + result.images[i]._id;
+              var image_url = 'image/' + result.images[i]._id;
               var figure = '<figure>'
                 + '<a href="#" onClick="imgClick(\'' + image_url + '\');">'
                 + '<img src="/' + image_url + '&att=thumbnail" width="100%"/>'
@@ -416,7 +416,7 @@ function post(){
   console.log( 'Sending data... : ' + blob.size );
   var formData = new FormData();
   formData.append( 'image', blob );    //. <form enctype='multipart/formdata'><input name='image' type='file'/> ...
-  formData.append( 'userId', userId );
+  formData.append( 'user_id', userId );
   $.ajax({
     type: 'POST',
     url: '/image',
@@ -426,7 +426,7 @@ function post(){
     success: function( result, dataType ){
       if( result.id ){
         //. https://developers.line.biz/ja/reference/messaging-api/#image-message
-        var img_url = base_url + 'image?id=' + result.id;
+        var img_url = base_url + 'image/' + result.id;
         var img_url0 = img_url + '&att=thumbnail';
 
         var data = {
