@@ -143,13 +143,15 @@ $(function(){
           if( result && result.status && result.images.length > 0 ){
             var figures = '';
             for( var i = result.images.length - 1; i >= 0; i -- ){
-              var image_url = 'image/' + result.images[i]._id;
-              var figure = '<figure>'
-                + '<a href="#" onClick="imgClick(\'' + image_url + '\');">'
-                + '<img src="/' + image_url + '?attachment=1" width="100%"/>'
-                + '</a>'
-                + '</figure>';
-              figures += figure;
+              if( result.images[i] && result.images[i].id ){
+                var image_url = 'image/' + result.images[i].id;
+                var figure = '<figure>'
+                  + '<a href="#" onClick="imgClick(\'' + image_url + '\');">'
+                  + '<img src="/' + image_url + '?attachment=1" width="100%"/>'
+                  + '</a>'
+                  + '</figure>';
+                figures += figure;
+              }
             }
 
             $('#mycarousel').html( '<div id="mycarousel-inner"></div>' );
