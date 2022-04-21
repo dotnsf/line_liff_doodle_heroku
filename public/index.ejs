@@ -134,6 +134,7 @@ $(function(){
     }
 
     liff.getProfile().then( profile => {
+      console.log( profile );
       userId = profile.userId;
 
       $.ajax({
